@@ -43,8 +43,8 @@ export default class SignUp extends Component {
 		}
 	};
 
-	handleChange = event => {
-		const { name, value } = evant.target;
+	handleChange = e => {
+		const { name, value } = e.target;
 
 		this.setState({ [name]: value });
 	};
@@ -61,7 +61,7 @@ export default class SignUp extends Component {
 						name='displayName'
 						value={displayName}
 						onChange={this.handleChange}
-						label='displayName'
+						label='Display Name'
 						required
 					/>
 					<FormInput
