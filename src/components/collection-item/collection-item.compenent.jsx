@@ -21,7 +21,7 @@ function CollectionItem({ item, addItem }) {
 				<span className='price'>{price}</span>
 			</div>
 			<CustomButton onClick={() => addItem(item)} inverted>
-				Att to cart
+				Add to cart
 			</CustomButton>
 		</div>
 	);
