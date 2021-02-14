@@ -71,7 +71,7 @@ class App extends Component {
 	}
 }
 
-const maStateToProps = createStructuredSelector({
+const mapStateToProps = createStructuredSelector({
 	currentUser: selectCurrentUser,
 });
 
@@ -79,4 +79,4 @@ const mapDispatchToProps = dispact => ({
 	setCurrentUser: user => dispact(setCurrentUser(user)),
 });
 
-export default connect(maStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
