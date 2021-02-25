@@ -20,6 +20,7 @@ class SignIn extends React.Component {
 		e.preventDefault();
 		const { emailSignInStart } = this.props;
 		const { email, password } = this.state;
+
 		emailSignInStart(email, password);
 	};
 
@@ -71,7 +72,7 @@ class SignIn extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
 	googleSignInStart: () => dispatch(googleSignInStart()),
-	emailSignInStart: ({ email, password }) =>
+	emailSignInStart: (email, password) =>
 		dispatch(emailSignInStart({ email, password })),
 });
 
