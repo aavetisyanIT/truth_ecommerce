@@ -1,61 +1,74 @@
 import React from 'react';
-
-import './sign-in.styles.scss';
-import FormInput from './../form-input/form-input.component';
-import CustomButton from './../custom-button.component/custom-button.component';
-import { googleSignInStart } from '../../redux/user/user.actions';
 import { connect } from 'react-redux';
-import { emailSignInStart } from './../../redux/user/user.actions';
+
+import FormInput from '../form-input/form-input.component';
+// import CustomButton from '../custom-button/custom-button.component';
+import CustomButton from './../custom-button.component/custom-button.component';
+
+import {
+	googleSignInStart,
+	emailSignInStart,
+} from '../../redux/user/user.actions';
+
+import {
+	SignInContainer,
+	SignInTitle,
+	ButtonsBarContainer,
+} from './sign-in.styles';
 
 class SignIn extends React.Component {
 	constructor(props) {
 		super(props);
+
 		this.state = {
 			email: '',
 			password: '',
 		};
 	}
 
-	handleSubmit = async e => {
-		e.preventDefault();
+	handleSubmit = async event => {
+		event.preventDefault();
 		const { emailSignInStart } = this.props;
 		const { email, password } = this.state;
 
 		emailSignInStart(email, password);
 	};
 
-	handleChange = e => {
-		const { value, name } = e.target;
+	handleChange = event => {
+		const { value, name } = event.target;
+
 		this.setState({ [name]: value });
 	};
 
 	render() {
 		const { googleSignInStart } = this.props;
 		return (
-			<div className='sign-in'>
-				<h2>I already have an account</h2>
-				<span className='title'>
-					Sign in with your email and password
-				</span>
+			<SignInContainer>
+				<SignInTitle>I already have an account</SignInTitle>
+				<span>Sign in with your email and password</span>
+
 				<form onSubmit={this.handleSubmit}>
 					<FormInput
-						type='email'
 						name='email'
-						value={this.state.email}
+						type='email'
 						handleChange={this.handleChange}
+						value={this.state.email}
 						label='email'
 						required
 					/>
 					<FormInput
-						type='password'
 						name='password'
+						type='password'
 						value={this.state.password}
 						handleChange={this.handleChange}
 						label='password'
 						required
 					/>
-					<div className='buttons'>
-						<CustomButton type='submit'>Sign in</CustomButton>
+					<ButtonsBarContainer>
+						<CustomButton type='submit'>
+							{' '}
+							Sign in{' '}
+						</CustomButton>
 						<CustomButton
 							type='button'
 							onClick={googleSignInStart}
@@ -63,9 +76,9 @@ class SignIn extends React.Component {
 						>
 							Sign in with Google
 						</CustomButton>
-					</div>
+					</ButtonsBarContainer>
 				</form>
-			</div>
+			</SignInContainer>
 		);
 	}
 }
