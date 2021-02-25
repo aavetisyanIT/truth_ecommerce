@@ -19,29 +19,6 @@ import SignInAndSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up.com
 import './App.css';
 
 class App extends Component {
-	unsubscribeFromAuth = null;
-
-	componentDidMount() {
-		const { setCurrentUser } = this.props;
-
-		this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-			if (userAuth) {
-				const userRef = await createUserProfileDocument(userAuth);
-				userRef.onSnapshot(snapShot => {
-					setCurrentUser({
-						id: snapShot.id,
-						...snapShot.data(),
-					});
-				});
-			}
-			setCurrentUser(userAuth);
-		});
-	}
-
-	componentWillUnmount() {
-		this.unsubscribeFromAuth();
-	}
-
 	render() {
 		return (
 			<div className='App'>
@@ -75,8 +52,4 @@ const mapStateToProps = createStructuredSelector({
 	currentUser: selectCurrentUser,
 });
 
-const mapDispatchToProps = dispact => ({
-	setCurrentUser: user => dispact(setCurrentUser(user)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
